@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.api = void 0;
+const express_1 = require("express");
+const auto_controller_1 = require("../controllers/auto.controller");
+exports.api = (0, express_1.Router)();
+exports.api.post('/registrar', auto_controller_1.createAuto);
+exports.api.get('/lista', auto_controller_1.getAllAutos);
+exports.api.get('/ver/:id', auto_controller_1.getAuto);
+exports.api.put('/autoUpdate/:id', auto_controller_1.updateAuto);
+exports.api.delete('/deleteAuto/:id', auto_controller_1.deleteAuto);
