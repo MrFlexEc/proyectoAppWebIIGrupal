@@ -1,6 +1,5 @@
 //Importamos injectable para trabajar con inyeccion de dependencia
 import { Injectable, Inject } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 //importar los patrones de repository para trabajar mas ordenado
 import{Repository}from 'typeorm'
 //Se importa la entidad o tabla para trabajar
@@ -12,7 +11,7 @@ import { CrearModificarTorneo } from '../validaciones/torneos.dto';
 export class TorneosServicios {
     //Se crea un constructor para realizar la inyección de dependencias para usar el repository
     constructor(
-        @InjectRepository(Torneos) private TorneosRepos: Repository<Torneos>
+        @Inject("TORNEOS_REPOSITORY") private TorneosRepos: Repository<Torneos>
     ){}
 
     //Realizar las funciones para las peticiones

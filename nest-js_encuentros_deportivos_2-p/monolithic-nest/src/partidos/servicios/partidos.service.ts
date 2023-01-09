@@ -1,6 +1,5 @@
 //Importamos injectable para trabajar con inyeccion de dependencia
 import { Injectable, Inject } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
 //importar los patrones de repository para trabajar mas ordenado
 import{Repository}from 'typeorm'
 //Se importa la entidad o tabla para trabajar
@@ -13,7 +12,7 @@ import { CrearModificarPartido } from '../validaciones/partidos.dto';
 export class PartidosServicios {
     //Se crea un constructor para realizar la inyección de dependencias para usar el repository
     constructor(
-        @InjectRepository(Partidos) private PartidosRepos: Repository<Partidos>,
+        @Inject("PARTIDOS_REPOSITORY") private PartidosRepos: Repository<Partidos>,
     ){}
 
     //Realizar las funciones para las peticiones

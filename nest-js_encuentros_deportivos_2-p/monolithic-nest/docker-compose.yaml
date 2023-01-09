@@ -1,13 +1,12 @@
-version: '3'
+version: '3.8'
 
 services:
-  databasePgx:
+  databasePg:
     image: postgres:15
     restart: always
     environment:
-      - POSTGRES_DB=encuentros_deportivos
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=contra
-      - e POSTGRES_PASSWORD=password
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=encuentros_deportivos2P
+      - POSTGRES_USER=Xavier
     ports:
       - '5432:5432'

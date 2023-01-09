@@ -1,23 +1,27 @@
-//datatypes tipos de datos que soporta sequelize
-import {DataTypes} from 'sequelize'
+//importamos mongoose para usarlo
+const mongoose = require ('mongoose');
 
-//llamar a database. js para traer a la instancia sequelize
-import {sequelize} from '../database/database.js'
-
-//Con el sequelize se define la tabla
-export const Equipos = sequelize.define('Equipos',{
+//Se crea la tabla 
+const Equiposchema = mongoose.Schema({
     Id_equipo:{
-        type: DataTypes.INTEGER,
-        primaryKey: true,
-        autoIncrement: true
+        type: Number,
+        required: true
     },
+
+    Nombre_equipo:{
+        type: String,
+        required: true
+    },
+
     Descripcion_equipo:{
-        type: DataTypes.STRING
+        type: String,
+        required: true
     },
+
     Serie_equipo:{
-        type:DataTypes.CHAR
-    },
-},{
-//añadir otro objeto para quitar las tablas que no se quieren
-timestamps:false}
-)
+        type: String,
+        required: true
+    }
+})
+
+module.exports=mongoose.model('Equipo',Equiposchema);

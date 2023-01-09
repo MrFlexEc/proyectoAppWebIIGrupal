@@ -1,22 +1,25 @@
-import {Router} from 'express'
-import {
-    getEquipobyid,
-    getEquipos,
-    deleteEquipos,
-    createEquipos,
-    updateEquipos
-    } from '../Controladores/Equipos.controller.js'
+const express = require("express")
+//instanciar para utilizar Router
+const router = express.Router()
+const {
+   GetEquipos,
+   GetEquiposbyId,
+   DeleteEquipo,
+   updateEquipo,
+   createEquipos
+    } = require ('../Controladores/Equipos.controller')
 
-const router = Router();
 
-//consultar Equipos
-router.get('/Equipos', getEquipos)
-//consultar un solo Equipo
-router.get('/Equipos/:id',getEquipobyid)
-//crear Equipos
+
+//consultar Partidos
+router.get('/Equipos', GetEquipos)
+//consultar un solo partido
+router.get('/Equipos/:id',GetEquiposbyId)
+//Crear un partido
 router.post('/Equipos',createEquipos)
-//actualizar Equipos
-router.put('/Equipos/:id', updateEquipos)
-//eliminar Equipos
-router.delete('/Equipos/:id',deleteEquipos)
-export default router
+//Actualizar un partido
+router.put('/Equipos/:id', updateEquipo)
+//Eliminar un partido
+router.delete('/Equipos/:id',DeleteEquipo)
+
+module.exports = router;

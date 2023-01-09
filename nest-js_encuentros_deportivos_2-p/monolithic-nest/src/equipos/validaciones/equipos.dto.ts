@@ -6,7 +6,7 @@ export class CrearModificarEquipo {
 
     @ApiProperty()
     @IsNotEmpty({message: 'El nombre no puede estar vacio'})
-    @IsString({message: 'El nombre debe ser un string' })
+    @IsString({message: 'El nombre debe ser un string'})
     Nombre_equipo:string;
 
     @ApiProperty()

@@ -1,22 +1,25 @@
-import {Router} from 'express'
-import {
-    getTorneobyid,
-    getTorneos,
-    deleteTorneos,
-    createTorneos,
-    updateTorneos
-    } from '../Controladores/Torneos.controller.js'
+const express = require("express")
+//instanciar para utilizar Router
+const router = express.Router()
+const {
+   GetTorneos,
+   GetTorneosbyId,
+   DeleteTorneo,
+   updateTorneo,
+   createTorneos
+    } = require ('../Controladores/Torneos.controller')
 
-const router = Router();
+
 
 //consultar Torneos
-router.get('/Torneos', getTorneos)
-//consultar un solo Torneo
-router.get('/Torneos/:id',getTorneobyid)
-//crear Torneos
+router.get('/Torneos', GetTorneos)
+//consultar un solo torneo
+router.get('/Torneos/:id',GetTorneosbyId)
+//Crear un torneo
 router.post('/Torneos',createTorneos)
-//actualizar Torneos
-router.put('/Torneos/:id', updateTorneos)
-//eliminar Torneos
-router.delete('/Torneos/:id',deleteTorneos)
-export default router
+//Actualizar un torneo
+router.put('/Torneos/:id', updateTorneo)
+//Eliminar un torneo
+router.delete('/Torneos/:id',DeleteTorneo)
+    
+module.exports = router;

@@ -1,18 +1,19 @@
 //este archivo tendra la configuracion de express
-import express from "express";
-import PartidosRutas from './Rutas/Equipos.ruta.js'
+const express = require("express")
+const EquiposRutas= require ('./Rutas/Equipos.ruta')
 
 
 //ejecutar express
 const app = express()
 
 //middlewares
-//Desde aplicacion cliente se envia un dato al servidor en formato json, lo convierte a js
+//desde aplicacion cliente se envia un dato al servidor en formato json, lo convierte a js
 app.use(express.json())
 
-
 //app que utilice lo que va a requerir desde la carpeta de rutas a usar
-app.use(PartidosRutas);
+app.use(EquiposRutas);
+
 
 //exportar 
-export default app;
+module.exports = app;
+

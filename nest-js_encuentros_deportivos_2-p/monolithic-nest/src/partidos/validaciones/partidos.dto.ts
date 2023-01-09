@@ -6,7 +6,7 @@ export class CrearModificarPartido {
 
     @ApiProperty()
     @IsNotEmpty({message: 'La fecha no puede estar vacio'})
-    @IsDateString({message: 'La fecha debe estar correcta'} )
+    @IsDateString({message: 'La fecha debe estar correcta'})
     Fecha_partido:Date;
 
     @ApiProperty()

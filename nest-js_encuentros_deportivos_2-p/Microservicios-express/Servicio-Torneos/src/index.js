@@ -1,20 +1,20 @@
-//Este archivo sera el encargado de arrancar la aplicación
-import app from './app.js'
+//este archivo sera el encargado de arrancar la aplicación
+const app =require ('./app')
 //importar la base de datos de la conexion
-import {sequelize} from './database/database.js'
-
-import './Modelos/Torneos.js'
-
-
+const mongoose = require ("mongoose");
+require('dotenv').config();
 
 //crear funcion principal
 async function main(){
-    try {   
-        //Metodo sync para sincronizacion con base de datos para crear o elimianar tablas
-        await sequelize.sync({force:false});
-        app.listen(5000);
-        console.log("Servidor levantado http://localhost:5000");
+
+    try {
+        const PUERTO =  process.env.APP_PORT || 4000;
+        await mongoose.set("strictQuery", false);
+        await mongoose.connect(process.env.MONGODB_URL, {useNewUrlParser: true, useUnifiedTopology: true})
+        app.listen(PUERTO);
+        console.log(`Servidor levantado http://localhost:${PUERTO}`);
     } catch (error) {
+        console.log(process.env.MONGODB_URL);
         console.log("conexión no posible", error);
     }
 

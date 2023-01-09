@@ -1,109 +1,92 @@
 //para guardar los datos en los modelos hay que traer el modelo 
-import {Torneos} from '../Modelos/Torneos.js'
+const Torneoschema = require ('../Modelos/Torneos')
 
 
 
-//funcion para consultar Torneos 
-export const getTorneos = async (req,res)=>{
-    
-    //trycash por si ocurriera un error
-    try {
-        //Para consultar con metodo findall de devuelve un arreglo
-        const torneos = await Torneos.findAll();
-        res.json(torneos)
-    } catch (error) {
-       return res.status(500).json({
-        message: error.message
-       }) 
-    }
-    
+//Función para mostrar todos los Torneos
+ const GetTorneos = (req,res) =>{
+    Torneoschema
+    .find()
+    .then((data)=>res.json(data))
+    .catch((error)=>res.json({
+        message: error
+    }))
 }
 
-//funcion para mostrar un solo Torneo
-export const getTorneobyid = async (req, res)=>{
-    try {
-        const {id} = req.params
-        const torneobyid = await Torneos.findOne({
-        where:{
-            id
-        }
-        })
-        //si no hay un torneo
-        if(!torneobyid) return res.status(404).json({
-            message: 'El torneo no existe'
-        })
-
-        res.json(torneobyid)
-    } catch (error) {
-        return res.status(500).json({
-            message: error.message
-        })
-    }
+//Función para mostrar un torneo por ID
+const GetTorneosbyId = (req,res) =>{
+    const {Id_torneo}=req.params;
+    Torneoschema
+    .findById(Id_torneo)
+    .then((data)=>res.json(data))
+    .catch((error)=>res.json({
+        message: error
+    }))
 }
 
-
-
-//función para crear Torneos
-export const createTorneos = async (req,res)=>{
-    //traer los datos del body que envian
-    const {descripcion_torneo
+//Función para actualizar un torneo por ID
+const updateTorneo = (req,res) =>{
+    const {id}=req.params;
+    const {Id_torneo, Descripcion_torneo
         } = req.body
-   try {
-       const newTorneo = await Torneos.create({
-        descripcion_torneo:descripcion_torneo
-
-       })
-       res.json(newTorneo)
-   } catch (error) {
-       return res.status(500).json({
-           message: error.message
-       })
-   }
+    Torneoschema
+    .updateOne({Id_torneo:id },{ $set: {Descripcion_torneo}})
+    .then((data)=>res.json(
+        {
+            message: "Torneo Actualizado",
+            data
+        }))
+    .catch((error)=>res.json({
+        message: error
+    }))
 }
 
-//FUNCION PARA ACTUALIZAR Torneos
-export const updateTorneos = async (req, res)=>{
-    try {
-        //extraer el id de los parametros
-        const {id} = req.params;
-        //extraer desde el request body
-        const {descripcion_torneo}=req.body
-        //usar funcion findpk para buscar por el primary key
-        const torneo = await Torneos.findByPk(id)
-        torneo.descripcion_torneo=descripcion_torneo
+//Función para crear Torneos
+const createTorneos = (req,res) =>{
+    const Torneo = Torneoschema(req.body);
+    Torneo 
+    .save()
+    .then((data)=>res.json(
+        {
+            message:"Torneo creado",
+            data
+        }))
+    .catch((error)=>res.json({
+        message: error
+    }))
+}
 
-        //para guardar en la base de datos
-        await torneo.save()
-        res.json({
-            message:'torneo Actualizado', torneo
-    })
-    } catch (error) {
-        return res.status(500).json({
-            message: error.message
-        })
-    }
+//Función para Eliminar un torneo por ID
+const DeleteTorneo = (req,res) =>{
+    const {id}=req.params;
+    Torneoschema
+    .remove({Id_torneo:id })
+    .then((data)=>res.json(
+        {
+            message:"Torneo eliminado",
+            data
+        }))
+    .catch((error)=>res.json({
+        message: error
+    }))
 }
 
 
 
-//FUNCION PARA ELIMINAR Torneos
-export const deleteTorneos = async (req, res)=>{
-    //Eliminar con el destroy 
-    try {
-        const {id}= req.params;
-        await Torneos.destroy({
-            where: {
-                id: id,
-            },
-            truncate: true
-        });
-        res.status(200).json({
-            message: 'Torneo eliminado'
-        });
-    } catch (error) {
-        return res.status(500).json({
-            message: error.message
-        })
-    }
+
+//exportar funciones
+module.exports = { 
+    GetTorneos,
+    GetTorneosbyId,
+    DeleteTorneo,
+    updateTorneo,
+    createTorneos
 }
+
+
+
+
+
+
+
 
