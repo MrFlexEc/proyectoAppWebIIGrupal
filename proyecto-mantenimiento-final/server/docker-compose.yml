@@ -11,8 +11,8 @@ services:
     build: ./monolithic
     depends_on:
       - mongo
-    environment:
-      - DB_MONGO=mongodb://mongo:27017/proyecto
+    #environment:
+    #  - DB_MONGO=mongodb://mongo:27017/proyecto
   mongo:
     image: mongo
     command: mongod --quiet --logpath /dev/null
