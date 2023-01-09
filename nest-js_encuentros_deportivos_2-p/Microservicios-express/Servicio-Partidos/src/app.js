@@ -6,7 +6,7 @@ const PartidosRutas= require ('./Rutas/Partido.ruta')
 //ejecutar express
 const app = express()
 
-//middlewares
+// middlewares
 //desde aplicacion cliente se envia un dato al servidor en formato json, lo convierte a js
 app.use(express.json())
 

@@ -3,7 +3,7 @@ const express = require("express")
 const TorneosRutas= require ('./Rutas/Torneos.ruta')
 
 
-//ejecutar express
+// ejecutar express
 const app = express()
 
 //middlewares
