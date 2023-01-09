@@ -10,9 +10,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deletePaciente = exports.updatePaciente = exports.getPaciente = exports.getAllPacientes = exports.createPaciente = void 0;
-
 const paciente_model_1 = require("../models/paciente.model");
-const createPaciente  = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const createPaciente = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const data = req.body;
     const paciente = new paciente_model_1.Paciente();
     paciente.nombre = data.nombre;
@@ -29,19 +28,17 @@ const createPaciente  = (req, res) => __awaiter(void 0, void 0, void 0, function
     });
 });
 exports.createPaciente = createPaciente;
-
 const getAllPacientes = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     paciente_model_1.Paciente.find((err, paciente_data) => {
         if (paciente_data) {
             res.status(200).send({ paciente: paciente_data });
         }
         else {
-            res.status(403).send({ message: 'No existen registros de pacientes: ', err });
+            res.status(403).send({ message: 'No existen registros', err });
         }
     }).clone().catch(function (err) { console.log(err); });
 });
 exports.getAllPacientes = getAllPacientes;
-
 const getPaciente = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params['id'];
     yield paciente_model_1.Paciente.findById(id, (err, paciente_data) => {
@@ -49,12 +46,11 @@ const getPaciente = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             res.status(200).send({ paciente: paciente_data });
         }
         else {
-            res.status(403).send({ message: 'No existe el Paciente especificado', err });
+            res.status(403).send({ message: 'No existe el paciente especificado', err });
         }
     }).clone().catch(function (err) { console.log(err); });
 });
-exports.getPaciente= getPaciente;
-
+exports.getPaciente = getPaciente;
 const updatePaciente = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params['id'];
     const data = req.body;
@@ -73,7 +69,6 @@ const updatePaciente = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }).clone().catch(function (err) { console.log(err); });
 });
 exports.updatePaciente = updatePaciente;
-
 const deletePaciente = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params['id'];
     paciente_model_1.Paciente.findByIdAndDelete(id, (err, paciente_eliminado) => {
@@ -81,7 +76,7 @@ const deletePaciente = (req, res) => __awaiter(void 0, void 0, void 0, function*
             res.status(200).send({ paciente_eliminado });
         }
         else {
-            res.status(500).send({ message: 'No se pudo eliminar el paciente', err });
+            res.status(500).send({ message: 'No se puedo eliminar el paciente', err });
         }
     });
 });

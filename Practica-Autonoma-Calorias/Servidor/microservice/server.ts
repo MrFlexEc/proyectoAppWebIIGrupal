@@ -18,7 +18,7 @@ export class Server{
 
         //TODAS LAS RUTAS
         this.paths = {
-            pacientes: '/pacientes'
+            pacientes: '/paciente'
         }
 
         //LLAMADA A LOS METODOS
@@ -47,7 +47,7 @@ export class Server{
         this._express.listen(this.port, ()=>{
             console.clear();
             console.log('WELCOME TO MICROSERVICE OF PACIENTES')
-            console.log(`Server running at port http:localhost:${this.port}/pacientes`);
+            console.log(`Server running at port http:localhost:${this.port}/paciente`);
         })
     }
 }

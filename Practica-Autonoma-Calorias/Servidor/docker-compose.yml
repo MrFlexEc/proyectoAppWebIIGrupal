@@ -6,16 +6,18 @@ services:
     depends_on:
       - mongo
     environment:
-      - DB_MONGO=mongodb://localhost:27017/MicroserviceCal
+      - DB_MONGO=mongodb://mongo:27017/proyecto
   monolitico:
     build: ./monolitico
     depends_on:
       - mongo
-    environment:
-      - DB_MONGO=mongodb://localhost/MonoliticoCal
+    #environment:
+    # - DB_MONGO=mongodb://localhost/proyecto
   mongo:
     image: mongo
     command: mongod --quiet --logpath /dev/null
+    ports:
+      - 27017:27017
   nginx:
     image: nginx:latest
     ports:

@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Paciente = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const { Schema, model } = mongoose_1.default;
-const pacienteSchema = new Schema({
+const PacienteSchema = new Schema({
     nombre: {
         type: String,
         required: [true, 'Se necesita saber el nombre del Paciente']
@@ -18,12 +18,10 @@ const pacienteSchema = new Schema({
     edad: {
         type: String,
         required: [true, 'Se requiere su edad']
-
     },
     altura: {
         type: String,
         required: [true, 'Es necesario saber la alura']
     }
-    
 });
-exports.Paciente = mongoose_1.default.model('Pacientes', pacienteSchema);
+exports.Paciente = mongoose_1.default.model('Pacientes', PacienteSchema);
