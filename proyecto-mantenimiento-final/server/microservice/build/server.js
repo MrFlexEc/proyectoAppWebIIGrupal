@@ -47,7 +47,7 @@ class Server {
         this.port = Number(process.env.PORT || 3200);
         //TODAS LAS RUTAS
         this.paths = {
-            autos: '/autos'
+            autos: '/auto'
         };
         //LLAMADA A LOS METODOS
         this.connectionDB();
@@ -73,7 +73,7 @@ class Server {
         this._express.listen(this.port, () => {
             console.clear();
             console.log('WELCOME TO MICROSERVICE OF AUTOS');
-            console.log(`Server running at port http:localhost:${this.port}/autos`);
+            console.log(`Server running at port http:localhost:${this.port}/auto`);
         });
     }
 }

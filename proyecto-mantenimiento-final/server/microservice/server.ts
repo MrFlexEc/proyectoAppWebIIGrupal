@@ -18,7 +18,7 @@ export class Server{
 
         //TODAS LAS RUTAS
         this.paths = {
-            autos: '/autos'
+            autos: '/auto'
         }
 
         //LLAMADA A LOS METODOS
@@ -47,7 +47,7 @@ export class Server{
         this._express.listen(this.port, ()=>{
             console.clear();
             console.log('WELCOME TO MICROSERVICE OF AUTOS')
-            console.log(`Server running at port http:localhost:${this.port}/autos`);
+            console.log(`Server running at port http:localhost:${this.port}/auto`);
         })
     }
 }
