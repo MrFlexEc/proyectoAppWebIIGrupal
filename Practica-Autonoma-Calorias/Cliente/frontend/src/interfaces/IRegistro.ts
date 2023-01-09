@@ -4,8 +4,8 @@ export interface IResRegistro{
 
 export interface Registro{
 _id?:string;
-id_paciente: string;
-id_plato: string;
+id_pacientes: string;
+id_platos: string;
 fecha: string;
 hora: string;
 numero_de_calorias_consumida:string;

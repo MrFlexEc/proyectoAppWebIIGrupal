@@ -4,7 +4,7 @@ import axios from 'axios'
 import {IRPlato, Plato} from "./interfaces/IPlato"
 //para ser compartir puerto y ser usado el backend y front
 const httpAxios=axios.create({
-  baseURL:"http://localhost:3000/"
+  baseURL:"http://localhost:8082/"
 })
 
 //ts. de platos 
@@ -17,7 +17,7 @@ app.innerHTML+=`
   <ul class="lista">
     <li class="item"><a class="enlace" href="./index.html">Platos</a></li>
     <li class="item"><a class="enlace" href="./paciente.html">Pacientes</a></li>
-    <li class="item"><a class="enlace" href="./registro.html">Registro</a></li>
+    <li class="item"><a class="enlace" href="./registro.html">Registros</a></li>
   </ul>
 </nav>
 
@@ -27,14 +27,14 @@ app.innerHTML+=`
 
 
 
-<label for="id">Identificador</label> <input type="text" id="idPlato">
+<label for="id">Id_plato</label> <input type="text" id="idPlato">
 <label for="nombreplato">Nombre Plato</label> <input type="text" id="nombreplato">
  
 
 
-<button id="limpiarPlato">Limpiar</button>
-<button id="crearPlato">Grabar</button>
-<button id="consultarPlato">consultar</button>
+<button id="limpiarPlato">Borrar</button>
+<button id="crearPlato">Guardar</button>
+<button id="consultarPlato">Consultar</button>
 
 
 
@@ -68,7 +68,7 @@ limpiarPlato.addEventListener("click",()=>{
 
 //consultar plato metodo 
 consultarPlato.addEventListener("click", async()=>{
-const resPlatos:IRPlato=await (await httpAxios.get<IRPlato>("plato")).data
+const resPlatos:IRPlato=await (await httpAxios.get<IRPlato>("platos")).data
 
 
 const tabla=document.createElement("table")
@@ -90,7 +90,7 @@ cuerpo.innerHTML=``
     document.querySelectorAll(".boton").forEach((ele:Element)=>{
       ele.addEventListener("click", async()=>{
         const idx=(ele as HTMLButtonElement).value
-        const plato:Plato=await (await httpAxios.get<Plato>(`plato/${idx}`)).data
+        const plato:Plato=await (await httpAxios.get<Plato>(`platos/${idx}`)).data
        //yo estaba haciendo  idIdioma.value!=idioma._id eso es incorrecto
         idPlato.value=plato._id!
         nombreplato.value=plato.nombreplato
@@ -108,13 +108,13 @@ const data:Plato={
 if(idPlato.value.trim().length>0)
 {
 //ruta
-const resp:Plato=await (await httpAxios.put<Plato>(`plato/update/?platoId=${idPlato.value}`,data)).data
+const resp:Plato=await (await httpAxios.put<Plato>(`platos/modificar/${idPlato.value}`,data)).data
 console.log(`El plato ${resp.nombreplato} fue modificado con éxito`);
 alert("El plato fue modificado con exito")
 return;
 }
 try{
-  const resp: Plato =  await (await httpAxios.post<Plato>(`plato/create`, data)).data
+  const resp: Plato =  await (await httpAxios.post<Plato>(`platos/crear`, data)).data
   console.log(`El plato ${resp.nombreplato} fue grabado con éxito`);
   alert("El plato fue grabado con exito")
 

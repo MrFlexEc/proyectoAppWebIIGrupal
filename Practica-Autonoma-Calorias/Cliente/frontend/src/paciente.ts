@@ -4,7 +4,7 @@ import {IRPaciente, Paciente} from "./interfaces/IPaciente"
 //librerias importadas 
 //puerto a usr para backend 
 const httpAxios=axios.create({
-    baseURL:"http://localhost:3000/"
+    baseURL:"http://localhost:8082/"
 })
 
 const app=document.querySelector<HTMLDivElement>("#app")!
@@ -16,7 +16,7 @@ app.innerHTML=`
   <ul class="lista">
     <li class="item"><a class="enlace" href="./index.html">Platos</a></li>
     <li class="item"><a class="enlace" href="./paciente.html">Pacientes</a></li>
-    <li class="item"><a class="enlace" href="./registro.html">Registro</a></li>
+    <li class="item"><a class="enlace" href="./registro.html">Registros</a></li>
   </ul>
 </nav>
 <div class="container">
@@ -28,8 +28,8 @@ app.innerHTML=`
 <label for="edadPaciente">edad</label> <input type="text" id="edadPaciente">
 <label for="alturaPaciente">altura</label> <input type="text" id="alturaPaciente">
 
-<button id="limpiarPaciente">Limpiar</button>
-<button id="crearPaciente">Grabar</button>
+<button id="limpiarPaciente">Borrar</button>
+<button id="crearPaciente">Guardar</button>
 <button id="consultarPaciente">Consultar</button>
 </div>
 <div id="cuerpo"> </div>
@@ -104,16 +104,16 @@ const data:Paciente={
   altura:alturaPaciente.value
 }
         
-if(idPaciente.value.trim().length>0)
-{
+//if(idPaciente.value.trim().length>0)
+//{
         
-const resp:Paciente=await (await httpAxios.put<Paciente>(`paciente/update/?pacienteId=${idPaciente.value}`,data)).data
-console.log(`El paciente ${resp.nombre}  fue modificado con éxito`);
-alert("El paciente fue modificado con exito")
-return;
-}
+//const resp:Paciente=await (await httpAxios.put<Paciente>(`/paciente/pacienteUpdate/?=${idPaciente.value}`,data)).data
+//console.log(`El paciente ${resp.nombre}  fue modificado con éxito`);
+//alert("El paciente fue modificado con exito")
+//return;
+//}
 try{
-  const resp: Paciente =  await (await httpAxios.post<Paciente>(`paciente/create`, data)).data
+  const resp: Paciente =  await (await httpAxios.post<Paciente>(`paciente/create/`, data)).data
   console.log(`El paciente ${resp.nombre} fue grabado con éxito`);
   alert("El paciente fue grabado con exito")
         
