@@ -11,7 +11,7 @@ async function main(){
         //const ConexionURL = "mongodb+srv://Paco2:Xavier1802@cluster0.k0nozkw.mongodb.net/PruebaDocker"
         const PUERTO =  process.env.APP_PORT || 4000;
         await mongoose.set("strictQuery", false);
-        await mongoose.connect(process.env.MONGODB_URI, {useNewUrlParser: true, useUnifiedTopology: true} )
+        await mongoose.connect(process.env.MONGODB_URLL, {useNewUrlParser: true, useUnifiedTopology: true} )
         app.listen(PUERTO);
         console.log(`Servidor levantado http://localhost:${PUERTO}`);
     } catch (error) {

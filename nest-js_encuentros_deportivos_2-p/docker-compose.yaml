@@ -2,7 +2,7 @@ version: "3"
 
 services:
   equipos:
-    build: ./Equipos-service
+    build: ./Microservicios-express/Servicio-Equipos
     depends_on:
       - mongoequipos
     environment:
@@ -15,7 +15,7 @@ services:
       - "27017:27017"
 
   torneos:
-    build: ./Torneos-service
+    build: ./Microservicios-express/Servicio-Torneos
     depends_on:
       - mongotorneos
     environment:
@@ -27,6 +27,36 @@ services:
     ports:
       - "27018:27017"
 
+  partidos:
+    build: ./Microservicios-express/Servicio-Partidos
+    depends_on:
+      - mongopartidos
+    environment:
+      - MONGODB_URLL=mongodb://mongopartidos:27017/partidosdb
+
+  mongopartidos:
+    container_name: mongoPartidos
+    image: mongo
+    ports:
+      - "27019:27017"
+
+  monolitico:
+    build: ./monolithic-nest
+    depends_on:
+      - databasePg
+    ports:
+      - "443:443"
+
+  databasePg:
+    image: postgres:15
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=admin
+      - POSTGRES_DB=encuentros_deportivos2P
+      - POSTGRES_USER=Xavier
+    ports:
+      - "5432:5432"
+
   nginx:
     image: nginx:latest
     ports:
@@ -36,3 +66,4 @@ services:
     depends_on:
       - equipos
       - torneos
+      - partidos
