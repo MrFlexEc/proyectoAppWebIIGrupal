@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  databasePg:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=encuentros_deportivos
+      - POSTGRES_USER=xavier5
+      - POSTGRES_PASSWORD=contra
+    ports:
+      - '5432:5432'
