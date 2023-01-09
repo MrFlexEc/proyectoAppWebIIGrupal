@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { IPacientes } from "../interfaces/paciente.interface";
 import { Paciente } from "../models/paciente.model";
-
+//importnado librerias de cada uno de los modelo e interfaz 
+//constante para crear paciente 
 export const createPaciente = async(req: Request, res:Response)=>{
     const data = req.body as IPacientes;
 
@@ -21,6 +22,7 @@ export const createPaciente = async(req: Request, res:Response)=>{
     })
 }
 
+//metodo para obtener los pacientes 
 export const getAllPacientes = async (_req: Request, res: Response)=>{
     Paciente.find((err, paciente_data)=>{
         if (paciente_data) {
@@ -30,7 +32,7 @@ export const getAllPacientes = async (_req: Request, res: Response)=>{
         }
     }).clone().catch(function(err){console.log(err)})
 }
-
+//metodo para obtenr un paciente 
 export const getPaciente = async (req: Request, res: Response)=>{
     const id = req.params['id'];
     await Paciente.findById(id, (err: Error, paciente_data: IPacientes)=>{
@@ -41,7 +43,7 @@ export const getPaciente = async (req: Request, res: Response)=>{
         }
     }).clone().catch(function(err){console.log(err)})
 }
-
+//metodo para modificar un paciente
 export const updatePaciente = async (req: Request, res: Response)=>{
     const id = req.params['id'];
     const data = req.body;
@@ -59,6 +61,7 @@ export const updatePaciente = async (req: Request, res: Response)=>{
         }
     }).clone().catch(function(err){ console.log(err)})
 }
+//metodo para elimianr un paciente
  export const deletePaciente = async (req: Request, res: Response)=>{
     const id = req.params['id'];
 

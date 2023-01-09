@@ -31,11 +31,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+//INSTANCIAS  Y MODULOS NECESARIOS PARA LA CONEXION A LA BASE DE DATOS de mongo
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.dbConnection = void 0;
+//importaciones de algunas librerias necesarias para el mongo
 const mongoose_1 = __importStar(require("mongoose"));
 const dbConnection = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        //constante para llamar al .env donde esta la direccion a la que se conectara el mongo
         const url = process.env.DB_MONGO;
         mongoose_1.default.set("strictQuery", false);
         yield (0, mongoose_1.connect)(url || '');

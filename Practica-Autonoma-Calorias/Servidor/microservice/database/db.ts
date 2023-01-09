@@ -1,5 +1,5 @@
 import mongoose, {connect} from "mongoose";
-
+//conexion a base de dato y librerias
 export const dbConnection = async()=>{
     try {
         const url = process.env.DB_MONGO;

@@ -8,9 +8,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+//protipos a usar en el documento o codigo
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deletePaciente = exports.updatePaciente = exports.getPaciente = exports.getAllPacientes = exports.createPaciente = void 0;
 const paciente_model_1 = require("../models/paciente.model");
+//rutas de acceso al modelo
+//craciacion de metodo para crear pacientes, la cual seria un POST
 const createPaciente = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const data = req.body;
     const paciente = new paciente_model_1.Paciente();
@@ -27,7 +30,9 @@ const createPaciente = (req, res) => __awaiter(void 0, void 0, void 0, function*
         }
     });
 });
+//exportacion de el metodo 
 exports.createPaciente = createPaciente;
+//creacion de metodo para obtener todos los pacientes registrados 
 const getAllPacientes = (_req, res) => __awaiter(void 0, void 0, void 0, function* () {
     paciente_model_1.Paciente.find((err, paciente_data) => {
         if (paciente_data) {
@@ -38,7 +43,9 @@ const getAllPacientes = (_req, res) => __awaiter(void 0, void 0, void 0, functio
         }
     }).clone().catch(function (err) { console.log(err); });
 });
+//exportando el metodo 
 exports.getAllPacientes = getAllPacientes;
+//metodo para obtener un solo paciente
 const getPaciente = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params['id'];
     yield paciente_model_1.Paciente.findById(id, (err, paciente_data) => {
@@ -50,7 +57,9 @@ const getPaciente = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         }
     }).clone().catch(function (err) { console.log(err); });
 });
+//exporando el metodo 
 exports.getPaciente = getPaciente;
+//metodo para modificar un paciente a traves de sus atributos 
 const updatePaciente = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params['id'];
     const data = req.body;
@@ -68,7 +77,9 @@ const updatePaciente = (req, res) => __awaiter(void 0, void 0, void 0, function*
         }
     }).clone().catch(function (err) { console.log(err); });
 });
+//exportando metodo 
 exports.updatePaciente = updatePaciente;
+//por ultimo metdo para eliminacion delete
 const deletePaciente = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const id = req.params['id'];
     paciente_model_1.Paciente.findByIdAndDelete(id, (err, paciente_eliminado) => {

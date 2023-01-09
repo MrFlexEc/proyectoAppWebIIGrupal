@@ -36,11 +36,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Server = void 0;
+//utilizacion de librerias y rutas donde encontramos rutas de paceinte y la conexion a la base de datos 
+//adeemas un cors que permitira la comparticion de recursos 
 const express_1 = __importStar(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const paciente_route_1 = require("./routes/paciente.route");
 const db_1 = require("./database/db");
 class Server {
+    //constructor con cada una de las instancias a usar 
     constructor() {
         this.app = (0, express_1.Router)();
         this.router = (0, express_1.Router)();
@@ -70,6 +73,7 @@ class Server {
         this.app.use(this.paths.pacientes, paciente_route_1.api);
     }
     listen() {
+        //express o servidor escuchando
         this._express.listen(this.port, () => {
             console.clear();
             console.log('WELCOME TO MICROSERVICE OF PACIENTES');

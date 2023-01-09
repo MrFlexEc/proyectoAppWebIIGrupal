@@ -2,7 +2,7 @@ import mongoose, {Mongoose} from "mongoose";
 //import {IReceta} from "../interfaces/mantenimiento"
 import { IPacientes } from "../interfaces/paciente.interface";
 const {Schema, model} = mongoose;
-
+//creacion del modelo y entidades 
 const PacienteSchema : mongoose.Schema = new Schema<IPacientes>({
     nombre: {
         type: String,
