@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.api = void 0;
+const express_1 = require("express");
+const EncuentroDeportivo_controller_1 = require("../controllers/encuentrodeportivo.controller");
+exports.api = (0, express_1.Router)();
+exports.api.post('/crear', EncuentroDeportivo.createEncuentroDeportivo);
+exports.api.get('/datos', EncuentroDeportivo.getAllEncuentrosDeportivos);
+exports.api.get('/ver/:id', EncuentroDeportivo.getEncuentroDeportivo);
+exports.api.put('/encuentrodeportivoUpdate/:id', EncuentroDeportivo.updateEncuentroDeportivo);
+exports.api.delete('/deleteEncuentroDeportivo/:id', paciente_controller_1.deleteEncuentroDeportivo);
